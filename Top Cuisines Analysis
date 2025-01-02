@@ -1,0 +1,74 @@
+1. Top Cuisines
+
+Determine the top three most
+common cuisines in the dataset.
+
+Calculate the percentage of
+restaurants that serve each of the top
+cuisines.
+
+#**Level 1: Task 1**
+
+
+##Import Libraries
+
+
+import pandas as pd
+import matplotlib.pyplot as plt
+
+### Load Dataset
+
+file_path = '/content/Dataset .csv'
+data = pd.read_csv(file_path)
+print(data.head())
+
+### Clean data & Missing Values
+
+print(data.isnull().sum())
+
+data = data.dropna(subset=['Cuisines'])
+
+print(data)
+
+##Analysing Top Cuisines
+
+
+top_cuisines = data['Cuisines'].value_counts().head(3)
+print("Top 3 Cuisines:")
+print(top_cuisines)
+
+top_cuisines.plot(kind='bar', color='skyblue', figsize=(10, 7))
+plt.title('Top 3 Cuisines')
+plt.xlabel('Cuisine')
+plt.ylabel('Number of Restaurants')
+plt.show()
+
+## Calculate the percentage of restaurants
+
+total_restaurants = len(data)
+top_cuisines_percentage = (top_cuisines / total_restaurants) * 100
+print("Percentage of Restaurants Serving Top Cuisines:")
+print(top_cuisines_percentage)
+
+top_cuisines_percentage.plot(kind='pie', autopct='%1.1f%%', figsize=(6, 6), startangle=140)
+plt.title('Percentage of Restaurants Serving Top Cuisines')
+plt.ylabel('')
+plt.show()
+
+#Final Result
+
+top_cuisines_df = top_cuisines.reset_index()
+top_cuisines_df.columns = ['Cuisine', 'Count']
+top_cuisines_df.to_csv('Top_Cuisines.csv', index=False)
+
+top_cuisines_df.to_csv('Top_Cuisines.csv', index=False)
+
+from google.colab import files
+files.download('Top_Cuisines.csv')
+
+
+Following is:- 
+Py script:- https://colab.research.google.com/drive/1a7VAaVVC85YOdzQbKlAOugJSc-ocjgUz?usp=sharing
+
+Ms-excel:- https://1drv.ms/x/c/9ed9a4b034779c74/EceGO6GGWj1HtLWvaPnqwJAB2TPDbmdW_hF5l5nXs8QOoA
+
